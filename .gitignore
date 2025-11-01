@@ -1,0 +1,55 @@
+# Unity generated files
+Temp/
+Library/
+Logs/
+UserSettings/
+
+# Visual Studio / Rider cache and user data
+.vs/
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.log
+
+# Build output
+Build/
+Builds/
+build/
+builds/
+
+# Unity Package Manager
+Packages/manifest.json
+Packages/lock.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ZIP files
+*.zip
+
+# Database files
+*.db
+*.db-wal
+*.db-shm
+
+# Semantic Symbols
+*.SemanticSymbols.db
+
+# VSCode / Visual Studio IntelliSense
+.vscode/
+*.vsidx
+*.vsmdi
+*.vstest
+
+# Editor temp files
+*.tmp
+*.temp
+
+# Other common ignores
+.idea/
+*.swp
+*.swo

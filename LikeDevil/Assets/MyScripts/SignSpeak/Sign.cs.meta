@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 98f9839d854a13141a04537ef8c40b2c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - speakPlane: {instanceID: 0}
+  - speakText: {instanceID: 0}
+  - textFile: {fileID: 4900000, guid: 2222a71fc008ee34c8111db504631b75, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 77c32ea4c5ec56b4fab3149b9a45a80b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bloodEffect: {fileID: 912775552545516589, guid: 2fca24516066a104eb2a95fe66f0e285,
+      type: 3}
+  - coin: {fileID: 1608857380777572825, guid: 1a9bebaafe186a54dbdbe48552db1108, type: 3}
+  - hurtTx: {fileID: 7673226387557697737, guid: 4bff48aad1e00a44f8875e2e4d986e62,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

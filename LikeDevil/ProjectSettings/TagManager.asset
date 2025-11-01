@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Enemy
+  - Player
+  - Spike
+  - OneWayPlatform
+  - Item
+  - TriggerBox
+  - Weapon
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BkGround
+    uniqueID: 263253383
+    locked: 0
+  - name: Ground
+    uniqueID: 180240459
+    locked: 0
+  - name: Item
+    uniqueID: 3314976949
+    locked: 0
+  - name: Enemy
+    uniqueID: 1082968179
+    locked: 0
+  - name: Player
+    uniqueID: 239452687
+    locked: 0
+  - name: Weapon
+    uniqueID: 1307783061
+    locked: 0
