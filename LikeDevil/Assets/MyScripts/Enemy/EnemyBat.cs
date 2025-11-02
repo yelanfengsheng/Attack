@@ -67,4 +67,5 @@ public class EnemyBat : Enemy
         float randomY = Random.Range(-canMoveAre.y / 2, canMoveAre.y / 2);
         return new Vector2(randomX, randomY);
     }
+
 }

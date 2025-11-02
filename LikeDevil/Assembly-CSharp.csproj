@@ -78,15 +78,16 @@
     <Compile Include="Assets\MyScripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\MyScripts\Architecture\ArchiteDamage.cs" />
     <Compile Include="Assets\MyScripts\Box\TreasureBoxTouch.cs" />
+    <Compile Include="Assets\MyScripts\Enemy\EnemyTranslate.cs" />
     <Compile Include="Assets\MyScripts\Prop\PropType.cs" />
     <Compile Include="Assets\MyScripts\Enemy\EnemyBat.cs" />
+    <Compile Include="Assets\MyScripts\Enemy\IDamageable.cs" />
     <Compile Include="Assets\MyScripts\Enemy\MoveAreaVisualizer.cs" />
     <Compile Include="Assets\MyScripts\Prop\CouldBeEat.cs" />
     <Compile Include="Assets\MyScripts\UI\HealthBarUI.cs" />
     <Compile Include="Assets\MyScripts\Prop\HpLiquid.cs" />
     <Compile Include="Assets\MyScripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\MyScripts\Prop\Coin.cs" />
-    <Compile Include="Assets\MyScripts\Enemy\PathDT.cs" />
     <Compile Include="Assets\MyScripts\Weapon\ControlSickle.cs" />
     <Compile Include="Assets\MyScripts\Box\TreasureType.cs" />
   </ItemGroup>

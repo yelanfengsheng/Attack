@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IDamageable  // 添加接口实现
 {
     public int health = 3;
     public int damage = 1;
@@ -14,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     protected PlayerHealth playerHealth;
     public GameObject coin;
     public GameObject hurtTx;
+
     protected virtual void Start()
     {
         // 查找SpriteRenderer
@@ -22,6 +23,16 @@ public abstract class Enemy : MonoBehaviour
         {
             originalColor = sr.color;
         }
+        else if (sr == null)
+        {
+            sr = GetComponentInChildren<SpriteRenderer>();
+            originalColor = sr.color;
+            if (originalColor != null)
+            {
+                Debug.Log("找到了 originalColor");
+            }
+        }
+
         else
         {
             Debug.LogError("SpriteRenderer not found on enemy: " + gameObject.name);
@@ -48,13 +59,14 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    // 这个 TakeDamage 方法现在实现了 IDamageable 接口
     public virtual void TakeDamage(int damageAmount)
     {
         StartCoroutine(FlashRedCoroutine());
 
         if (bloodEffect != null)
         {
-            
+
             Instantiate(bloodEffect, transform.position, Quaternion.identity);
             Instantiate(coin, transform.position, Quaternion.identity);
         }
@@ -64,12 +76,12 @@ public abstract class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Die();
-           
+
         }
         if (hurtTx != null)
         {
             hurtTx.GetComponent<TextMesh>().text = damageAmount.ToString();
-            GameObject hurtTextInstance = Instantiate(hurtTx, transform.position+new Vector3(0.5f,0.5f,0f), Quaternion.identity);
+            GameObject hurtTextInstance = Instantiate(hurtTx, transform.position + new Vector3(0.5f, 0.5f, 0f), Quaternion.identity);
             Destroy(hurtTextInstance, 0.5f); // 1秒后销毁伤害文本
 
         }
@@ -91,8 +103,7 @@ public abstract class Enemy : MonoBehaviour
         sr.color = originalColor;
     }
 
-
-    // 添加Trigger检测
+            // 添加Trigger检测
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -102,6 +113,10 @@ public abstract class Enemy : MonoBehaviour
                 playerHealth.PlayerTakeDamage(damage);
                 Debug.Log("Enemy damaged player via trigger! Damage: " + damage);
                 Camera.main.GetComponent<CamreaShark>().PlayCameraShake();
+            }
+            else
+            {
+                Debug.LogWarning("player没找到");
             }
         }
     }

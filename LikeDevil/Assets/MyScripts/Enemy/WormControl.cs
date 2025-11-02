@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormControl : MonoBehaviour
+public class WormControl : Enemy
 {
+   
     private Animator animator;
     private void Awake()
     {
@@ -13,12 +14,30 @@ public class WormControl : MonoBehaviour
             Debug.LogWarning("Anim not found!");
         }
         print(animator.name);
+       
     }
-
+    public void Start()
+    {
+        base.Start();
+    }
+    private void Update()
+    {
+       
+    }
+    private void FixedUpdate()
+    {
+        
+    }
 
     public void WormAttack()
     {
         animator.SetTrigger("attack");
+
     }
-    
+    public override void  TakeDamage(int damageAmount)
+    {
+        base.TakeDamage(damageAmount);
+    }
+
+
 }

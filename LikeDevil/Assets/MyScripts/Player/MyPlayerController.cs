@@ -94,7 +94,7 @@ public class MyPlayerController : MonoBehaviour
        else
         {
             startDashTimer -= Time.deltaTime;
-            if(startDashTimer < 0)
+            if(startDashTimer <= 0)
             {
                 isDashing = false;
                 dashObj.SetActive(false);
@@ -120,6 +120,7 @@ public class MyPlayerController : MonoBehaviour
         Move();
         SwitchAnimition();
     }
+    #region Move
     public void Move()
     {
         float moveInputX = Input.GetAxisRaw("Horizontal");
@@ -134,6 +135,9 @@ public class MyPlayerController : MonoBehaviour
             animator.SetBool("isRun", false);
         }
     }
+    #endregion
+    #region Jump
+
     private void Jump()
     {
         if(isGrounded)
@@ -154,6 +158,7 @@ public class MyPlayerController : MonoBehaviour
             isJump = false;
         }
     }
+    #endregion
     private void Attack()
     {
         animator.SetTrigger("Atk");
