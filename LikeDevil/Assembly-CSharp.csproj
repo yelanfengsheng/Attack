@@ -72,6 +72,7 @@
     <Compile Include="Assets\MyScripts\UI\CoinUI.cs" />
     <Compile Include="Assets\MyScripts\Player\FlashWhiteEffect.cs" />
     <Compile Include="Assets\MyScripts\Architecture\DamageController.cs" />
+    <Compile Include="Assets\NewScript\NewPlayerController.cs" />
     <Compile Include="Assets\MyScripts\Player\PlayerAttack.cs" />
     <Compile Include="Assets\MyScripts\Enemy\WormControl.cs" />
     <Compile Include="Assets\MyScripts\Player\RebornLife.cs" />
@@ -967,6 +968,10 @@
       <Project>{0D25E887-941F-234F-59CB-A02EAA93CFA7}</Project>
       <Name>PsdPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{A474DBE7-F612-5433-1BC7-D46391AA20EC}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.AI.Navigation.csproj">
       <Project>{C6490480-0833-66AC-7B08-C50EA2BA2D62}</Project>
       <Name>Unity.AI.Navigation</Name>
@@ -1082,6 +1087,10 @@
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{197FD5F1-5553-3C9C-6E16-D13AC5694827}</Project>
       <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{C9615C7D-2500-E41D-3032-DCFE40AC5A6B}</Project>
+      <Name>Cinemachine</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.SpriteShape.Editor.csproj">
       <Project>{245C5283-3BAD-46EE-62B8-B905C4978BB5}</Project>
