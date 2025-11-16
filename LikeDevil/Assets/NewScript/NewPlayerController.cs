@@ -10,24 +10,39 @@ public class NewPlayerController : MonoBehaviour
 
     private float movementInputDirection;
     private int amountOfJumpsLeft; // 记录剩余的跳跃次数
+    private int facingDirection =1;//记录玩家当前的面向方向
+    private float jumpTimer;
 
     private bool isFaceingRight = true;
     private bool isWalking = false;
     private bool isGrounded=false;
     private bool isTouchingWall=false;
     private bool isWallSliding=false;
-    private bool canJump=false;
+    private bool canNormalJump=false;
+    private bool canWallJump=false;
+    private bool isAttemptingToJump = false;
+
 
 
     public float movementSpeed = 10f;
     public float jumpForce = 10f;
+    public float movementForceInAir = 10f;
+    public float ariDragFactor = 0.95f;
+    public float jumpHeightFactor = 1f;
     public int amountOfJumps = 1;
     public float cicleRadius = 0.5f;
     public float wallCheckDistance = 0.5f;
     public float wallSlideSpeed = 2f;
-    
+    public float wallHopForce;
+    public float wallJumpForce;
+    public float jumpTimerSet =0.15f;
+
+    public Vector2 wallHopDirection; //定义角色进行垂直蹬墙跳（Wall Hop）时的跳跃方向
+    public Vector2 wallJumpDirection;//定义角色进行斜向蹬墙跳（Wall Jump）时的跳跃方向
 
     public LayerMask whatIsGround;
+
+
     public Transform wallCheck;
     public Transform groundCheck;
 
@@ -37,6 +52,9 @@ public class NewPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps;
+        wallHopDirection.Normalize();//单位向量
+        wallJumpDirection.Normalize();//单位向量 确保方向准确而不会因向量长度影响力度。
+
     }
 
     // Update is called once per frame
@@ -47,7 +65,7 @@ public class NewPlayerController : MonoBehaviour
         UpdateAnimtions();
         CheckIfCanJump();
         CheckIfWallSliding();
-      
+        CheckJump();
     }
 
   
@@ -68,7 +86,7 @@ public class NewPlayerController : MonoBehaviour
     }
     private void CheckIfWallSliding()
     {
-       if(isTouchingWall&&!isGrounded&&rb.velocity.y<0f)
+       if(isTouchingWall&&movementInputDirection==facingDirection)
         {
             isWallSliding = true;
         }
@@ -87,7 +105,8 @@ public class NewPlayerController : MonoBehaviour
         {
             Flip();
         }
-        if(rb.velocity.x != 0f)
+        // 基于输入判断是否行走，而不是基于速度
+        if (Mathf.Abs(movementInputDirection) > 0.01f)
         {
             isWalking = true;
         }
@@ -95,26 +114,30 @@ public class NewPlayerController : MonoBehaviour
         {
             isWalking = false;
         }
-        
+
     }
-   public void CheckSurroundings()
+   public void CheckSurroundings()//检查周围地形
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, cicleRadius, whatIsGround);
         isTouchingWall =Physics2D.Raycast(wallCheck.position,transform.right,wallCheckDistance,whatIsGround);
     }
-    private void CheckIfCanJump()
+    private void CheckIfCanJump()//检测是否可以跳跃
     {
-       if(isGrounded && rb.velocity.y<=0.1f)
+       if((isGrounded && rb.velocity.y<=0.01f))
         {
           amountOfJumpsLeft = amountOfJumps;
         }
+       if(isTouchingWall)
+        {
+            canWallJump = true;
+        }
        if(amountOfJumpsLeft<=0)
         {
-            canJump = false;
+            canNormalJump= false;
         }
        else
         {
-            canJump = true;
+            canNormalJump = true;
         }
                
     }
@@ -125,37 +148,116 @@ public class NewPlayerController : MonoBehaviour
         movementInputDirection = Input.GetAxisRaw("Horizontal");
         if(Input.GetButtonDown("Jump"))
         {
-            Jump();
+           if(isGrounded||(amountOfJumpsLeft>0&&isTouchingWall))//在地面或在墙上但是还有跳跃次数时，可以跳跃
+            {
+                NormalJump();
+            }
+           else
+            {
+                jumpTimer = jumpTimerSet;//设置跳起的时间
+                isAttemptingToJump = true;//尝试跳跃
+            }
+        }
+        if(Input.GetButtonUp("Jump"))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y*jumpHeightFactor);
         }
     }
    
 
     private void ApplyMovement()//应用移动
     {
-        rb.velocity = new Vector2(movementInputDirection * movementSpeed, rb.velocity.y);
-        if(isWallSliding)
+      
+        if(!isGrounded&&!isWallSliding&&movementInputDirection==0f)//在空中状态下 停止移动
         {
-            if(rb.velocity.y<-wallSlideSpeed)
+          rb.velocity =new Vector2(rb.velocity.x* ariDragFactor,rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(movementInputDirection * movementSpeed, rb.velocity.y);
+        }
+
+
+        if (isWallSliding)//防止isWallSliding被设置为true时，y速度小于-wallSlideSpeed
+        {
+            if (rb.velocity.y < -wallSlideSpeed)
             {
-                rb.velocity = new Vector2(rb.velocity.x,-wallSlideSpeed);
+                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
             }
         }
     }
     private void Flip()//翻转
     {
-        isFaceingRight = !isFaceingRight;
-        transform.Rotate(0f, 180f, 0f);
-    }
-    private void Jump()//跳跃
-    {
-        if(canJump)
+        if(!isWallSliding)//不是墙滑动 翻转
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            amountOfJumpsLeft-- ;
+            facingDirection = -facingDirection;
+            isFaceingRight = !isFaceingRight;
+            transform.Rotate(0f, 180f, 0f);
         }
+      
+    }
+    private void CheckJump()//检测跳跃
+    {
+       
+       if(jumpTimer>0f)
+        {
+            //如果是想进行墙跳
+            if(!isGrounded&&isTouchingWall&&movementInputDirection!=0f&&movementInputDirection!=facingDirection)
+            {
+                WallJump();
+            }
+            else if(isGrounded)
+            {
+                NormalJump();
+            }
+        }
+       if(isAttemptingToJump)
+        {
+            jumpTimer -= Time.deltaTime;
+        }
+
        
     }
-   private void OnDrawGizmos()
+    private void NormalJump()
+    {
+        // 普通跳跃：当可以跳跃且没有在墙上滑行时执行
+        if (canNormalJump)
+        {
+            // 设置垂直速度实现跳跃
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            // 减少可用跳跃次数
+            amountOfJumpsLeft--;
+            // 重置跳跃计时器
+            jumpTimer = 0f;
+            // 停止尝试跳跃
+            isAttemptingToJump = false;
+        }
+    }
+    private void WallJump()
+    {
+         // 斜向蹬墙跳：当接触墙壁(滑墙或触摸墙)且有水平输入时执行
+         if (canWallJump)
+        {
+            
+            rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+            // 结束滑墙状态
+            isWallSliding = false;
+            // 重置跳跃次数
+            amountOfJumpsLeft = amountOfJumps;
+            // 减少可用跳跃次数
+            amountOfJumpsLeft--;
+            // 计算蹬墙跳的力：使用wallJumpForce和wallJumpDirection，并考虑输入方向
+            Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * movementInputDirection,
+                                            wallJumpForce * wallJumpDirection.y);
+            // 应用瞬时力实现斜向蹬墙跳
+            rb.AddForce(forceToAdd, ForceMode2D.Impulse);
+            // 重置跳跃计时器
+            jumpTimer = 0f;
+            // 停止尝试跳跃
+            isAttemptingToJump = false;
+        }
+    }
+    private void OnDrawGizmos()
 {
     // 绘制检测地面的圆形区域
     Gizmos.color = Color.red;

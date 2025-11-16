@@ -115,8 +115,8 @@
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\TMPro_Private.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\TMPro_EventManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\TMP_CoroutineTween.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\TMP_StyleSheet.cs" />
+    <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\TMP_CoroutineTween.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\TMP_SpriteGlyph.cs" />
     <Compile Include="Library\PackageCache\com.unity.textmeshpro@3.0.7\Scripts\Runtime\TMP_MaterialManager.cs" />
   </ItemGroup>

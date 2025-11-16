@@ -72,8 +72,8 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\UpdateTracker.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\PostProcessing\CinemachinePostProcessing.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineVirtualCamera.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\CinemachineBlenderSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineSmoothPath.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\CinemachineBlenderSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\CinemachineVirtualCameraBase.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachinePath.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Components\CinemachineBasicMultiChannelPerlin.cs" />
@@ -81,11 +81,11 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Impulse\CinemachineImpulseSource.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\PostProcessing\CinemachineVolumeSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineExternalCamera.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\GaussianFilter.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\ThirdParty\clipper.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Components\CinemachineHardLockToTarget.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineCollider.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Experimental\CinemachineNewVirtualCamera.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\GaussianFilter.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Impulse\CinemachineCollisionImpulseSource.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Components\CinemachineOrbitalTransposer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Components\CinemachineTransposer.cs" />
@@ -94,8 +94,8 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineBrain.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Timeline\CinemachineMixer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Components\CinemachinePOV.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\ICinemachineComponent.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Helpers\CinemachineInputProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\ICinemachineComponent.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\RuntimeUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\ICinemachineCamera.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Helpers\CinemachineTriggerAction.cs" />
@@ -123,8 +123,8 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\SignalSourceAsset.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineFollowZoom.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\LensSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineClearShot.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\NoiseSettings.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineClearShot.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Impulse\CinemachineFixedSignal.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Experimental\CinemachineNewFreeLook.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Timeline\CinemachineTrack.cs" />
@@ -138,8 +138,8 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Impulse\CinemachineImpulseDefinition.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Components\CinemachineFramingTransposer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineCameraOffset.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineConfiner.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\UnityVectorExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineConfiner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\com.unity.cinemachine.asmdef" />

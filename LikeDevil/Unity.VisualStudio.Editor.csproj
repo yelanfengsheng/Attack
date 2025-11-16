@@ -95,8 +95,8 @@
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\AsyncOperation.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\ProjectGeneration\SdkStyleProjectGeneration.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\Messaging\ExceptionEventArgs.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\UnityInstallation.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\VisualStudioForMacInstallation.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\UnityInstallation.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\ProjectGeneration\LegacyStyleProjectGeneration.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\Testing\TestStatusAdaptor.cs" />
     <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\Editor\VisualStudioEditor.cs" />

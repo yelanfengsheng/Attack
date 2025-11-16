@@ -440,10 +440,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   jumpForce: 16
+  movementForceInAir: 10
+  ariDragFactor: 0.95
+  jumpHeightFactor: 0.5
   amountOfJumps: 2
   cicleRadius: 0.3
   wallCheckDistance: 0.45
   wallSlideSpeed: 2
+  wallHopForce: 10
+  wallJumpForce: 20
+  wallHopDirection: {x: 1, y: 0.5}
+  wallJumpDirection: {x: 1, y: 2}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256

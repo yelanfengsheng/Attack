@@ -310,10 +310,10 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\GetRelativePath.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\PendingChanges\ChangeCategoryTreeViewItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\Merge\IIncomingChangesTab.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\Locks\LocksTab.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Inspector\InspectorAssetSelection.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Developer\UpdateReport\UpdateReportLineListViewItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\UI\Progress\DrawProgressForViews.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\Locks\LocksTab.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\PlasticConnectionMonitor.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\Branch\BranchesSelection.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\UI\UIElements\UIElementsExtensions.cs" />

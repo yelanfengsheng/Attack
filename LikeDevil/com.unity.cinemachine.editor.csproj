@@ -60,7 +60,6 @@
     <Analyzer Include="G:\MyUnity\Unity版本\2022.3.58f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PostProcessing\CinemachinePostProcessingEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Menus\CinemachineMenu.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PostProcessing\CinemachineVolumeSettingsEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PropertyDrawers\NoiseSettingsPropertyDrawer.cs" />
@@ -91,8 +90,8 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineExternalCameraEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Utility\InspectorUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Helpers\CinemachineTriggerActionEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PropertyDrawers\CinemachineTagFieldPropertyDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineSmoothPathEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PropertyDrawers\CinemachineTagFieldPropertyDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineComposerEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PropertyDrawers\CinemachineBlendDefinitionPropertyDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Utility\CinemachineEditorAnalytics.cs" />
@@ -128,6 +127,7 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PropertyDrawers\EmbeddedAssetPropertyDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PropertyDrawers\AxisStatePropertyDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Impulse\CinemachineCollisionImpulseSourceEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\PostProcessing\CinemachinePostProcessingEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\EditorResources\StdLib.hlsl" />
