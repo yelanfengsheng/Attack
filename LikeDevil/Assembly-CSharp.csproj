@@ -71,6 +71,7 @@
     <Compile Include="Assets\MyScripts\Box\CreateTreasures.cs" />
     <Compile Include="Assets\MyScripts\UI\CoinUI.cs" />
     <Compile Include="Assets\MyScripts\Player\FlashWhiteEffect.cs" />
+    <Compile Include="Assets\NewScript\PlayerAfterImagePool.cs" />
     <Compile Include="Assets\MyScripts\Architecture\DamageController.cs" />
     <Compile Include="Assets\NewScript\NewPlayerController.cs" />
     <Compile Include="Assets\MyScripts\Player\PlayerAttack.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\MyScripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\MyScripts\Architecture\ArchiteDamage.cs" />
     <Compile Include="Assets\MyScripts\Box\TreasureBoxTouch.cs" />
+    <Compile Include="Assets\NewScript\PlayerAfterImageSprite.cs" />
     <Compile Include="Assets\MyScripts\Enemy\EnemyTranslate.cs" />
     <Compile Include="Assets\MyScripts\Prop\PropType.cs" />
     <Compile Include="Assets\MyScripts\Enemy\EnemyBat.cs" />
