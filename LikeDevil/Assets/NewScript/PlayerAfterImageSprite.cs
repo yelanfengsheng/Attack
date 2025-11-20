@@ -42,6 +42,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
         if(Time.time>(timeActived+activeTime))// 超出持续时间就会被返回对象池
         {
             //放进对象池
+            PlayerAfterImagePool.Instance.AddToPool(gameObject);
         }
 
     }

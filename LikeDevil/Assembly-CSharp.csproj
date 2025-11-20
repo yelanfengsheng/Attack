@@ -90,6 +90,7 @@
     <Compile Include="Assets\MyScripts\UI\HealthBarUI.cs" />
     <Compile Include="Assets\MyScripts\Prop\HpLiquid.cs" />
     <Compile Include="Assets\MyScripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\NewScript\PlayerCombatController.cs" />
     <Compile Include="Assets\MyScripts\Prop\Coin.cs" />
     <Compile Include="Assets\MyScripts\Weapon\ControlSickle.cs" />
     <Compile Include="Assets\MyScripts\Box\TreasureType.cs" />

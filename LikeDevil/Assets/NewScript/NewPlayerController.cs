@@ -12,6 +12,9 @@ public class NewPlayerController : MonoBehaviour
     private int amountOfJumpsLeft; // 记录剩余的跳跃次数
     private int facingDirection =1;//记录玩家当前的面向方向
     private float jumpTimer;
+    private float dashTimeLeft;//技能持续时间
+    private float lastImageXpos;//记录上一次创建的图片的X坐标
+    private float lastDashTime = -100;//记录最后一次的冲刺时刻 并用于检测是否可以进行冲刺的冷却时间
 
     private bool isFaceingRight = true;
     private bool isWalking = false;
@@ -21,6 +24,7 @@ public class NewPlayerController : MonoBehaviour
     private bool canNormalJump=false;
     private bool canWallJump=false;
     private bool isAttemptingToJump = false;
+    private bool isDash;
 
 
 
@@ -36,6 +40,11 @@ public class NewPlayerController : MonoBehaviour
     public float wallHopForce;
     public float wallJumpForce;
     public float jumpTimerSet =0.15f;
+    public float dashTime;
+    public float dashSpeed;
+    public float distanceBetweenImages;
+    public float dashCoolDown; //技能冷却时间
+
 
     public Vector2 wallHopDirection; //定义角色进行垂直蹬墙跳（Wall Hop）时的跳跃方向
     public Vector2 wallJumpDirection;//定义角色进行斜向蹬墙跳（Wall Jump）时的跳跃方向
@@ -66,6 +75,7 @@ public class NewPlayerController : MonoBehaviour
         CheckIfCanJump();
         CheckIfWallSliding();
         CheckJump();
+        CheckDash();
     }
 
   
@@ -162,8 +172,48 @@ public class NewPlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y*jumpHeightFactor);
         }
+        if(Input.GetButtonDown("Dash"))
+        {
+          
+            if(Time.time>(lastDashTime+dashCoolDown))
+            {
+                AttemptToDash();
+            }
+        }
     }
-   
+   private void AttemptToDash()
+    { 
+        isDash = true;
+        dashTimeLeft = dashTime;//技能持续时间重置
+        lastDashTime = Time.time;//记录最后一次的冲刺时间
+
+
+        PlayerAfterImagePool.Instance.GetFromPool();//获取一个图片
+        lastImageXpos = transform.position.x;//记录上一次创建图片的X坐标
+    }
+    private void CheckDash()
+    {
+        if(isDash)
+        {
+            if(dashTimeLeft>0)
+            { rb.velocity = new Vector2(movementInputDirection * dashSpeed, rb.velocity.y);
+                dashTimeLeft -= Time.time;//技能持续时间减去当前时间
+
+                if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
+                {
+                    PlayerAfterImagePool.Instance.GetFromPool();
+                    lastImageXpos = transform.position.x;
+                }
+
+            }
+            if(dashTimeLeft<=0||isTouchingWall)
+            {
+                isDash = false;
+                
+            }
+           
+        }
+    }
 
     private void ApplyMovement()//应用移动
     {
@@ -257,6 +307,11 @@ public class NewPlayerController : MonoBehaviour
             isAttemptingToJump = false;
         }
     }
+    private void DisableFlip()
+    {
+      
+    }
+
     private void OnDrawGizmos()
 {
     // 绘制检测地面的圆形区域
