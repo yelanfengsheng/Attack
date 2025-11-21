@@ -9,6 +9,9 @@ public class NewPlayerController : MonoBehaviour
     private Animator anim;
 
     private float movementInputDirection;
+    private float turnTimer;
+   
+
     private int amountOfJumpsLeft; // 记录剩余的跳跃次数
     private int facingDirection =1;//记录玩家当前的面向方向
     private float jumpTimer;
@@ -25,6 +28,10 @@ public class NewPlayerController : MonoBehaviour
     private bool canWallJump=false;
     private bool isAttemptingToJump = false;
     private bool isDash;
+    private bool isTouchingLedge;
+    private bool checkJumpMultiplier ;//检测跳跃系数
+    private bool canMove;
+    private bool canFlip;
 
 
 
@@ -40,10 +47,16 @@ public class NewPlayerController : MonoBehaviour
     public float wallHopForce;
     public float wallJumpForce;
     public float jumpTimerSet =0.15f;
+    public float turnTimerSet = 0.1f;
+
+
+
     public float dashTime;
     public float dashSpeed;
     public float distanceBetweenImages;
     public float dashCoolDown; //技能冷却时间
+    public Transform ledgeCheck;
+
 
 
     public Vector2 wallHopDirection; //定义角色进行垂直蹬墙跳（Wall Hop）时的跳跃方向
@@ -96,7 +109,7 @@ public class NewPlayerController : MonoBehaviour
     }
     private void CheckIfWallSliding()
     {
-       if(isTouchingWall&&movementInputDirection==facingDirection)
+       if(isTouchingWall&&movementInputDirection==facingDirection&&rb.velocity.y<0f)
         {
             isWallSliding = true;
         }
@@ -168,8 +181,28 @@ public class NewPlayerController : MonoBehaviour
                 isAttemptingToJump = true;//尝试跳跃
             }
         }
-        if(Input.GetButtonUp("Jump"))
+        if(Input.GetButtonDown("Horizontal")&&isTouchingWall) //触碰墙壁也有跳跃
         {
+            if(!isGrounded&&movementInputDirection!=facingDirection)//没有在地面时同时面向方向和输入方向不一致时候
+            {
+                canMove = false;
+                canMove = false;
+
+                turnTimer = turnTimerSet;
+            }
+        }
+        if(!canMove)//移动被禁止时 使用计数器来将移动和反转重新可以使用
+        {
+            turnTimer -=Time.deltaTime;
+            if(turnTimer<=0)
+            {
+                canMove = true;
+                canFlip = true;
+            }
+        }
+        if(checkJumpMultiplier&&!Input.GetButton("Jump"))//没有按下跳跃键时但是跳跃系数为真时，将跳跃高度乘以跳跃系数
+        {
+            checkJumpMultiplier = false;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y*jumpHeightFactor);
         }
         if(Input.GetButtonDown("Dash"))
@@ -222,7 +255,7 @@ public class NewPlayerController : MonoBehaviour
         {
           rb.velocity =new Vector2(rb.velocity.x* ariDragFactor,rb.velocity.y);
         }
-        else
+        else if(canMove)
         {
             rb.velocity = new Vector2(movementInputDirection * movementSpeed, rb.velocity.y);
         }
@@ -238,7 +271,7 @@ public class NewPlayerController : MonoBehaviour
     }
     private void Flip()//翻转
     {
-        if(!isWallSliding)//不是墙滑动 翻转
+        if(!isWallSliding&&canFlip)//不是墙滑动 翻转
         {
             facingDirection = -facingDirection;
             isFaceingRight = !isFaceingRight;
@@ -281,6 +314,7 @@ public class NewPlayerController : MonoBehaviour
             jumpTimer = 0f;
             // 停止尝试跳跃
             isAttemptingToJump = false;
+            checkJumpMultiplier = true;//检测跳跃乘数
         }
     }
     private void WallJump()
@@ -305,6 +339,8 @@ public class NewPlayerController : MonoBehaviour
             jumpTimer = 0f;
             // 停止尝试跳跃
             isAttemptingToJump = false;
+            checkJumpMultiplier = true;//检测跳跃乘数
+            turnTimer = 0;//转向计数器归零
         }
     }
     private void DisableFlip()

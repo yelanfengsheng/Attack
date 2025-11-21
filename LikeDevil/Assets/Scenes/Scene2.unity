@@ -446,15 +446,17 @@ MonoBehaviour:
   jumpHeightFactor: 0.5
   amountOfJumps: 2
   cicleRadius: 0.3
-  wallCheckDistance: 0.45
+  wallCheckDistance: 0.8
   wallSlideSpeed: 2
   wallHopForce: 10
   wallJumpForce: 20
   jumpTimerSet: 0.15
+  turnTimerSet: 0.1
   dashTime: 0
   dashSpeed: 0
   distanceBetweenImages: 0
   dashCoolDown: 0
+  ledgeCheck: {fileID: 0}
   wallHopDirection: {x: 1, y: 0.5}
   wallJumpDirection: {x: 1, y: 2}
   whatIsGround:
