@@ -17,6 +17,11 @@ public class PlayerAfterImagePool : MonoBehaviour
     }
     private void GrowPool() //为image池扩容
     {
+        if (afterImagePrefab == null)
+        {
+            Debug.LogError("afterImagePrefab is not assigned!");
+            return;
+        }
         for (int i = 0; i <10; i++)
         {
             var instanceToAdd = Instantiate(afterImagePrefab);//实例化残影预制体

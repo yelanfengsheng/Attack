@@ -82,6 +82,6 @@ public class PlayerCombatController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(attack1HitBoxPos.position,attack1HitBoxRadius);
+        Gizmos.DrawWireSphere(attack1HitBoxPos.position,attack1HitBoxRadius);
     }
 }

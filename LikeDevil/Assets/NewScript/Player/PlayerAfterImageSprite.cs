@@ -20,6 +20,10 @@ public class PlayerAfterImageSprite : MonoBehaviour
     private void OnEnable()
     {
         SR = GetComponent<SpriteRenderer>();
+        if(SR == null)
+        {
+            Debug.LogError("PlayerAfterImageSprite: ’“≤ªµΩSpriteRenderer");
+        }
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerSR = player.GetComponent<SpriteRenderer>();
 

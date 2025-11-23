@@ -23,9 +23,9 @@ TagManager:
   - TriggerBox
   - Weapon
   - 
-  - 
-  - 
-  - 
+  - Damageable
+  - Dead
+  - NewPlayer
   - 
   - 
   - 
