@@ -14,7 +14,8 @@ public class PlayerAfterImageSprite : MonoBehaviour
     [SerializeField]
     private float alpha;
     private float alphaSet = 0.8f;
-    private float alphaMultiplier = 0.85f; // 透明度递减系数
+    [SerializeField]
+    private float alphaDecay = 0.85f; // 透明度递减系数
 
     private Color color;
     private void OnEnable()
@@ -39,7 +40,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        alpha *= alphaMultiplier;// 透明度递减
+        alpha -= alphaDecay*Time.deltaTime;// 透明度递减
         color = new Color(1, 1, 1, alpha);
         SR.color = color;
 

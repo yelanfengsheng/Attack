@@ -22,11 +22,15 @@ public class PlayerCombatController : MonoBehaviour
 
     private float lastInputTime;//上次尝试攻击的时间
 
+    private float[] attackDetails = new float[2];//攻击细节 数组0为伤害 数组1为击退力
+
     private Animator anim;
+    private NewPlayerController PC;
     private void Start()
     {
         anim = GetComponent<Animator>();
         anim.SetBool("canAttack", combatEnabled);
+        PC = GetComponent<NewPlayerController>();
     }
     private void Update()
     {
@@ -68,16 +72,35 @@ public class PlayerCombatController : MonoBehaviour
     {
         Collider2D[] detectedColliders = Physics2D.OverlapCircleAll(attack1HitBoxPos.position,attack1HitBoxRadius,whatIsDamageable);
 
+        attackDetails[0] = attack1Damage;//设置伤害值
+        attackDetails[1] = transform.position.x;//设置攻击来源位置x坐标
+
         foreach (Collider2D collider in detectedColliders)
         {
-            collider.transform.parent.SendMessage("Damage", attack1Damage);//发送伤害
+            collider.transform.parent.SendMessage("Damage", attackDetails);//调用受伤函数 给敌人造成伤害
         }
+
     }
     private void FinishAttack1()//攻击1结束
     {
         isAttacking = false;
         anim.SetBool("isAttacking", isAttacking);
         anim.SetBool("attack1", false);
+    }
+    private void Damage(float[] attackDetails)
+    {
+        //玩家受伤逻辑
+        int damageDirection;
+        if(attackDetails[1] < transform.position.x)//攻击来源在玩家左侧
+        {
+            damageDirection = 1;//伤害方向向左
+        }
+        else
+        {
+            damageDirection = -1;//伤害方向向右
+        }
+        PC.Knockback(damageDirection);
+
     }
     private void OnDrawGizmos()
     {

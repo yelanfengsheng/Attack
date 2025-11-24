@@ -18,6 +18,11 @@ public class NewPlayerController : MonoBehaviour
     private float dashTimeLeft;//技能持续时间
     private float lastImageXpos;//记录上一次创建的图片的X坐标
     private float lastDashTime = -100;//记录最后一次的冲刺时刻 并用于检测是否可以进行冲刺的冷却时间
+    private float knockbackStartTime;//击退开始时间
+    [ SerializeField]
+    private float knockbackDuration;//击退持续时间
+
+    public Vector2 knockbackSpeed;//击退速度
 
     private bool isFaceingRight = true;
     private bool isWalking = false;
@@ -32,6 +37,7 @@ public class NewPlayerController : MonoBehaviour
     private bool checkJumpMultiplier;//检测跳跃系数
     private bool canMove;
     private bool canFlip;
+    private bool knockback;
 
 
 
@@ -55,12 +61,14 @@ public class NewPlayerController : MonoBehaviour
     public float dashSpeed;
     public float distanceBetweenImages;
     public float dashCoolDown; //技能冷却时间
+
     public Transform ledgeCheck;
 
 
 
     public Vector2 wallHopDirection; //定义角色进行垂直蹬墙跳（Wall Hop）时的跳跃方向
     public Vector2 wallJumpDirection;//定义角色进行斜向蹬墙跳（Wall Jump）时的跳跃方向
+
 
     public LayerMask whatIsGround;
 
@@ -106,6 +114,21 @@ public class NewPlayerController : MonoBehaviour
         anim.SetFloat("Blend", rb.velocity.y);
         anim.SetBool("isWallSliding", isWallSliding);
 
+    }
+    public void Knockback(int direction)//击退
+    {
+        knockback = true;
+        knockbackStartTime = Time.time;
+        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+
+    }
+    private void CheckKnockback()
+    {
+        if(Time.time>knockbackStartTime+knockbackDuration)
+        {
+            knockback = false;
+            rb.velocity = new Vector2(0, rb.velocity.y);//停止水平速度
+        }
     }
     private void CheckIfWallSliding()
     {
@@ -264,11 +287,11 @@ public class NewPlayerController : MonoBehaviour
         }
 
         // 非冲刺时才处理正常移动
-        if (!isGrounded && !isWallSliding && movementInputDirection == 0f)
+        if (!isGrounded && !isWallSliding && movementInputDirection == 0f&&!knockback)
         {
             rb.velocity = new Vector2(rb.velocity.x * ariDragFactor, rb.velocity.y);
         }
-        else if (canMove) // 这里 canMove 可以保留用于攻击等其他状态
+        else if (canMove && !knockback) // 这里 canMove 可以保留用于攻击等其他状态
         {
             rb.velocity = new Vector2(movementInputDirection * movementSpeed, rb.velocity.y);
         }
@@ -281,7 +304,7 @@ public class NewPlayerController : MonoBehaviour
     }
     private void Flip()//翻转
     {
-        if (!isWallSliding && canFlip)//不是墙滑动 翻转
+        if (!isWallSliding && canFlip && !knockback)//不是墙滑动 翻转
         {
             facingDirection = -facingDirection;
             isFaceingRight = !isFaceingRight;
