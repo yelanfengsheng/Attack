@@ -89,17 +89,24 @@ public class PlayerCombatController : MonoBehaviour
     }
     private void Damage(float[] attackDetails)
     {
-        //玩家受伤逻辑
-        int damageDirection;
-        if(attackDetails[1] < transform.position.x)//攻击来源在玩家左侧
+        if(!PC.GetDashState())//如果玩家没有处于冲刺状态 则受到伤害
         {
-            damageDirection = 1;//伤害方向向左
+            //玩家受伤逻辑
+            int damageDirection;
+
+
+            if (attackDetails[1] < transform.position.x)//攻击来源在玩家左侧
+            {
+                damageDirection = 1;//伤害方向向左
+            }
+            else
+            {
+                damageDirection = -1;//伤害方向向右
+            }
+            PC.Knockback(damageDirection);
         }
-        else
-        {
-            damageDirection = -1;//伤害方向向右
-        }
-        PC.Knockback(damageDirection);
+
+       
 
     }
     private void OnDrawGizmos()

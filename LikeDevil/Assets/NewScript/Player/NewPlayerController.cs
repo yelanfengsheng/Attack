@@ -19,7 +19,7 @@ public class NewPlayerController : MonoBehaviour
     private float lastImageXpos;//记录上一次创建的图片的X坐标
     private float lastDashTime = -100;//记录最后一次的冲刺时刻 并用于检测是否可以进行冲刺的冷却时间
     private float knockbackStartTime;//击退开始时间
-    [ SerializeField]
+    [SerializeField]
     private float knockbackDuration;//击退持续时间
 
     public Vector2 knockbackSpeed;//击退速度
@@ -97,6 +97,7 @@ public class NewPlayerController : MonoBehaviour
         CheckIfWallSliding();
         CheckJump();
         CheckDash();
+        CheckKnockback();
     }
 
 
@@ -124,7 +125,7 @@ public class NewPlayerController : MonoBehaviour
     }
     private void CheckKnockback()
     {
-        if(Time.time>knockbackStartTime+knockbackDuration)
+        if(Time.time>knockbackStartTime+knockbackDuration&& knockback)
         {
             knockback = false;
             rb.velocity = new Vector2(0, rb.velocity.y);//停止水平速度
@@ -383,6 +384,10 @@ public class NewPlayerController : MonoBehaviour
     private void EnableFlip()
     {
         canFlip = true;
+    }
+    public bool GetDashState()
+    {
+        return isDash;
     }
 
     private void OnDrawGizmos()

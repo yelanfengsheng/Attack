@@ -206,20 +206,19 @@ MonoBehaviour:
   maxHealth: 30
   knockbackDuration: 0.1
   knockbackSpeed: {x: 10, y: 5}
-  lastTouchDamageTime: 0
-  touchDamageCooldown: 1
+  touchDamageCooldown: 0.2
   touchDamageAmount: 20
-  touchDamageHeight: 1
-  touchDamageWeigth: 1
+  touchDamageHeight: 1.5
+  touchDamageWeigth: 2.5
   groundCheck: {fileID: 315711285}
-  touchDamageCheck: {fileID: 0}
+  touchDamageCheck: {fileID: 248192959}
   wallCheck: {fileID: 1823089982}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 524288
   hitPartical: {fileID: 2312840217706460639, guid: 94fbb4fa7515e344cbe6e55014e4e48a,
     type: 3}
   deathChunkPartical: {fileID: 5189024582128429906, guid: eeb8cb048894e704d9100db0ca542ebd,
@@ -314,6 +313,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &248192958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248192959}
+  m_Layer: 0
+  m_Name: TouchDamageChunk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &248192959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248192958}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1139044298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &315711284
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fd8293bc16896489953170e868cba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackDuration: 0.1
+  knockbackSpeed: {x: 10, y: 5}
   movementSpeed: 10
   jumpForce: 16
   movementForceInAir: 10
@@ -947,6 +979,7 @@ Transform:
   m_Children:
   - {fileID: 315711285}
   - {fileID: 1823089982}
+  - {fileID: 248192959}
   m_Father: {fileID: 191016025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1139044299

@@ -27,8 +27,8 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField]
     private Vector2 knockbackSpeed;//击退速度
 
-    [SerializeField]
-    private float lastTouchDamageTime;//上次接触伤害的时间
+    
+    
     [SerializeField]
     private float touchDamageCooldown = 1.0f;//接触伤害冷却时间
     [SerializeField]
@@ -54,7 +54,7 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField]
     private GameObject deadBloodPartical;//死亡血液粒子效果
 
-
+    private float lastTouchDamageTime;//上次接触伤害的时间
     private bool groundDetected;//是否检测到地面
     private bool wallDetected;//是否检测到墙壁
     private int facingDirection ;//敌人面朝方向，1为右，-1为左
@@ -264,6 +264,15 @@ public class BasicEnemyController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        Vector2 botLeft = new Vector2(touchDamageCheck.position.x - (touchDamageWeigth / 2), touchDamageCheck.position.y - (touchDamageHeight / 2));
+        Vector2 botRight = new Vector2(touchDamageCheck.position.x + (touchDamageWeigth / 2), touchDamageCheck.position.y - (touchDamageHeight / 2)); 
+        Vector2 topLeft = new Vector2(touchDamageCheck.position.x + (touchDamageWeigth / 2), touchDamageCheck.position.y + (touchDamageHeight / 2)) ;
+        Vector2 topRight = new Vector2(touchDamageCheck.position.x -  (touchDamageWeigth / 2), touchDamageCheck.position.y + (touchDamageHeight / 2));
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(botLeft, botRight);//绘制接触伤害检测区域
+        Gizmos.DrawLine(topRight, topLeft);
+        Gizmos.DrawLine(botLeft, topRight);
+        Gizmos.DrawLine(botRight, topLeft);
     }
 }
 

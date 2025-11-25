@@ -47,10 +47,18 @@ public class CombatDummyController : MonoBehaviour
     {
         CheckKnockback();// 检查击退
     }
-    private void Damage(float damage)// 假人接受伤害
+    private void Damage(float[] details)// 假人接受伤害
     {
-        currentHealth -= damage;
-        playerFacingDirection = playerController.GetFacingDirection();// 获取玩家朝向
+        currentHealth -= details[0];
+        if (details[1]<aliveGo.transform.position.x)// 攻击来源在假人左边
+        {
+            playerFacingDirection = 1;
+        }
+        else// 攻击来源在假人右边
+        {
+            playerFacingDirection = -1;
+        }
+
         Instantiate(hitPartical, aliveAnim.transform.position, Quaternion.Euler(0f,0f,Random.Range(0f,360f)));
         if (playerFacingDirection == 1)// 玩家朝向为1时，玩家在左边s
         {
