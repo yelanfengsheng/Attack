@@ -26,11 +26,13 @@ public class PlayerCombatController : MonoBehaviour
 
     private Animator anim;
     private NewPlayerController PC;
+    private PlayerStats PS;
     private void Start()
     {
         anim = GetComponent<Animator>();
         anim.SetBool("canAttack", combatEnabled);
         PC = GetComponent<NewPlayerController>();
+        PS = GetComponent<PlayerStats>();
     }
     private void Update()
     {
@@ -93,7 +95,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             //玩家受伤逻辑
             int damageDirection;
-
+            PS.DecreaseHealth(attackDetails[0]);//减少生命值
 
             if (attackDetails[1] < transform.position.x)//攻击来源在玩家左侧
             {
