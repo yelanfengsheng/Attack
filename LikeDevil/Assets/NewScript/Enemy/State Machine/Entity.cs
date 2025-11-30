@@ -1,0 +1,98 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Entity : MonoBehaviour
+{
+    public D_Entity entityData;//实体数据 不再需要手动赋值 通过脚本ableObject创建实例
+    public FiniteStateMachine stateMachinel;
+    public int facingDirection { get; private set; }//表示当前方向
+    public Rigidbody2D rb { get;private set; }
+    public Animator anim { get; private set; }
+    public GameObject aliveGo { get; private set; }
+    public AnimToStateMachine atsm { get; private set; }
+
+    private Vector2 velocityWorkspace;//速度工作区 作用是为了减少GC回收
+                                      //velocityWorkspace（“速度工作区”）是一个可复用的 Vector2 字段，用来临时存放计算出的速度并一次性赋值给 rb.velocity。
+                                      //主要目的不是功能上的必须，而是为了减少临时对象/副本的创建、提高可读性和微小的性能优化。
+
+    [SerializeField]
+    private Transform wallCheck;
+    [SerializeField]
+    private Transform ledgeCheck;
+    [SerializeField]
+    private Transform playerCheck;
+
+    public virtual void Start()
+    { 
+        facingDirection = 1;//初始方向向右
+        aliveGo = transform.Find("Alive").gameObject;
+        rb = aliveGo.GetComponent<Rigidbody2D>();
+        anim = aliveGo.GetComponent<Animator>();
+        stateMachinel = new FiniteStateMachine();//每个实体都将拥有自己的状态机
+        atsm = aliveGo.GetComponent<AnimToStateMachine>();
+    }
+    public virtual void Update()
+    {
+        stateMachinel.currentState.LogicUpdate();//状态机逻辑更新
+    }
+    public virtual void FixedUpdate()
+    {
+        stateMachinel.currentState.PhysicsUpdate();//状态机物理更新
+    }
+    public virtual void SetVelocity(float velocity)//设置移动速度
+    {
+        velocityWorkspace.Set(facingDirection * velocity, rb.velocity.y);//设置速度工作区
+        rb.velocity = velocityWorkspace;//应用速度工作区
+    }
+    public virtual bool CheckWall()//检测墙壁
+    {
+        return Physics2D.Raycast(wallCheck.position, aliveGo.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
+    }
+    public virtual bool CheckLedge()//检测边缘
+    {
+     
+        return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
+
+    }
+    public virtual bool CheckPlayerInMinAggroRange()//检测玩家是否在最小攻击范围内
+    {
+        return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+    }
+    public virtual bool CheckPlayerInMaxAggroRange()//检测玩家是否在最大攻击范围内
+    {
+        return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
+    } 
+    public virtual bool CheckPlayerInCloseRangeAction()//检测玩家是否在近战范围内
+    {
+       return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+    }
+    public virtual void Flip()//翻转实体方向
+    {
+        facingDirection *= -1;
+        aliveGo.transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+    public virtual  void OnDrawGizmos()//绘制检测射线
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(wallCheck.position, wallCheck.position+(Vector3)(Vector2.right*facingDirection*entityData.wallCheckDistance));//墙壁检测射线
+        Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position+(Vector3)(Vector2.down)*entityData.ledgeCheckDistance);//边缘检测射线
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);//近战范围检测射线
+        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);//最小仇恨范围检测射线
+        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);//最大仇恨范围检测射线
+
+    }
+}
+
+#region  此FSM的代码结构说明
+// Notes:
+//•	State（基类）
+//•	抽象所有“状态”的通用部分：保存 entity、stateMachine、animBoolName；提供 Enter/Exit/LogicUpdate/PhysicsUpdate 虚方法。
+//•	Enter 会设置 startTime 并把对应动画布尔位设为 true，Exit 则设为 false。
+//•	MoveState（中间层，继承自 State）
+//•	针对移动行为扩展：持有 D_MoveState（配置数据）、检测标志（isDetectingWall/isDetectingLedge/isPlayerInMinAgroRange 等）。
+//•	在 Enter 中根据 stateData 设置初始速度；在 PhysicsUpdate 中刷新射线检测结果（调用 Entity 的 CheckXxx 方法），把检测结果保存为字段供 LogicUpdate 使用。
+//•	E1_MoveState（具体实现，继承自 MoveState）
+//•	敌人 Enemy1 专用的移动逻辑：在 LogicUpdate 中使用从 MoveState 继承的检测字段（如 isDetectingWall、isPlayerInMinAgroRange）做状态切换（切换到 idleState、playerDetectedState 等），并可访问 enemy 特有成员（比如保存的其他状态实例）。
+#endregion

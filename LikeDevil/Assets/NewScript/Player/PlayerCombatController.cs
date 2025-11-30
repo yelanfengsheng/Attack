@@ -22,7 +22,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private float lastInputTime;//上次尝试攻击的时间
 
-    private float[] attackDetails = new float[2];//攻击细节 数组0为伤害 数组1为击退力
+    private AttackDetails attackDetails;//攻击细节 
 
     private Animator anim;
     private NewPlayerController PC;
@@ -74,8 +74,8 @@ public class PlayerCombatController : MonoBehaviour
     {
         Collider2D[] detectedColliders = Physics2D.OverlapCircleAll(attack1HitBoxPos.position,attack1HitBoxRadius,whatIsDamageable);
 
-        attackDetails[0] = attack1Damage;//设置伤害值
-        attackDetails[1] = transform.position.x;//设置攻击来源位置x坐标
+        attackDetails.damageAmount= attack1Damage;//设置伤害值
+       attackDetails.position = transform.position;//设置攻击来源位置x坐标
 
         foreach (Collider2D collider in detectedColliders)
         {
@@ -89,15 +89,15 @@ public class PlayerCombatController : MonoBehaviour
         anim.SetBool("isAttacking", isAttacking);
         anim.SetBool("attack1", false);
     }
-    private void Damage(float[] attackDetails)
+    private void Damage(AttackDetails attackDetails)
     {
         if(!PC.GetDashState())//如果玩家没有处于冲刺状态 则受到伤害
         {
             //玩家受伤逻辑
             int damageDirection;
-            PS.DecreaseHealth(attackDetails[0]);//减少生命值
+            PS.DecreaseHealth(attackDetails.damageAmount);//减少生命值
 
-            if (attackDetails[1] < transform.position.x)//攻击来源在玩家左侧
+            if (attackDetails.position.x < transform.position.x)//攻击来源在玩家左侧
             {
                 damageDirection = 1;//伤害方向向左
             }

@@ -113,8 +113,8 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Hub\Operations\CreateWorkspace.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\PendingChanges\ChangelistTreeViewItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\PendingChanges\DrawCommentTextArea.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\UI\EditorProgressBar.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Views\Merge\Gluon\IncomingChangesViewMenu.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\UI\EditorProgressBar.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Configuration\CloudEdition\Welcome\SignInWithEmailPanel.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\Hub\ProcessCommand.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.6.0\Editor\UI\Progress\DrawProgressForOperations.cs" />
