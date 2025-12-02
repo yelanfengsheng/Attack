@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1222d4609787ab44ba0e57fe05c4c0ef, type: 3}
   m_Name: E1_BaseData
   m_EditorClassIdentifier: 
+  macHealth: 30
+  damageHopSpeed: 10
   wallCheckDistance: 0.2
   ledgeCheckDistance: 0.4
   minAgroDistance: 7

@@ -41,6 +41,10 @@ public class Enemy1 : Entity
         
 
     }
+    public override void Damage(AttackDetails attackDetails)
+    {
+        base.Damage(attackDetails);
+    }
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

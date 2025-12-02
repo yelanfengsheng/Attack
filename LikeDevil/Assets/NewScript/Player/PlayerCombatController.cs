@@ -75,7 +75,8 @@ public class PlayerCombatController : MonoBehaviour
         Collider2D[] detectedColliders = Physics2D.OverlapCircleAll(attack1HitBoxPos.position,attack1HitBoxRadius,whatIsDamageable);
 
         attackDetails.damageAmount= attack1Damage;//设置伤害值
-       attackDetails.position = transform.position;//设置攻击来源位置x坐标
+        attackDetails.position = transform.position;//设置攻击来源位置x坐标
+        //Debug.Log("攻击命中的第一个名字"+detectedColliders[0].transform.parent.name);
 
         foreach (Collider2D collider in detectedColliders)
         {

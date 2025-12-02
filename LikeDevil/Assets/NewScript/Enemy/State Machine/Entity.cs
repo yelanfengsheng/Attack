@@ -23,6 +23,9 @@ public class Entity : MonoBehaviour
     [SerializeField]
     private Transform playerCheck;
 
+    private float currentHealth;//当前生命值
+    private int lastDamageDirection;//最后一次受伤方向
+
     public virtual void Start()
     { 
         facingDirection = 1;//初始方向向右
@@ -31,6 +34,7 @@ public class Entity : MonoBehaviour
         anim = aliveGo.GetComponent<Animator>();
         stateMachinel = new FiniteStateMachine();//每个实体都将拥有自己的状态机
         atsm = aliveGo.GetComponent<AnimToStateMachine>();
+        currentHealth = entityData.macHealth;//初始化当前生命值
     }
     public virtual void Update()
     {
@@ -66,6 +70,26 @@ public class Entity : MonoBehaviour
     public virtual bool CheckPlayerInCloseRangeAction()//检测玩家是否在近战范围内
     {
        return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+    }
+    public virtual void DamageHop(float velocity)//受伤跳跃
+    {
+        velocityWorkspace.Set(rb.velocity.x, velocity);//设置速度工作区
+        rb.velocity = velocityWorkspace;//应用速度工作区
+    }
+
+    public virtual void Damage(AttackDetails attackDetails)
+    {
+        currentHealth -= attackDetails.damageAmount;//减少生命值
+        DamageHop(entityData.damageHopSpeed);//受伤跳跃
+
+        if (attackDetails.position.x > aliveGo.transform.position.x)
+        {
+            lastDamageDirection = -1;
+        }
+        else
+        {
+            lastDamageDirection = 1;
+        }
     }
     public virtual void Flip()//翻转实体方向
     {

@@ -195,13 +195,13 @@ public class BasicEnemyController : MonoBehaviour
         }
     }
 
-    private void Damage(float[] attackDetails) //受伤函数 使用攻击细节数组作为参数 能够传递多种信息包括伤害值和攻击方向
+    public void Damage(AttackDetails attackDetails) //受伤函数 使用攻击细节数组作为参数 能够传递多种信息包括伤害值和攻击方向
     {
-        currentHealth -= attackDetails[0];//减少生命值 将攻击细节数组的第一个元素作为伤害值
+        currentHealth -= attackDetails.damageAmount;//减少生命值 将攻击细节数组的第一个元素作为伤害值
         //生成受击粒子效果
         Instantiate(hitPartical, aliveGameObject.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f,360.0f)));//在敌人位置生成受击粒子效果 并随机旋转粒子效果
 
-        if (attackDetails[1] > aliveGameObject.transform.position.x)//判断伤害来源方向
+        if (attackDetails.position.x > aliveGameObject.transform.position.x)//判断伤害来源方向
         {
             damageDirection = -1;//伤害来源在敌人右侧，敌人受到向左的攻击
         }

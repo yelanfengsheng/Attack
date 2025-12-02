@@ -79,8 +79,8 @@
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_MoveState.cs" />
     <Compile Include="Assets\NewScript\Manager\GameManager.cs" />
     <Compile Include="Assets\MyScripts\UI\CoinUI.cs" />
-    <Compile Include="Assets\MyScripts\Player\FlashWhiteEffect.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_LookForPlayerState.cs" />
+    <Compile Include="Assets\MyScripts\Player\FlashWhiteEffect.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_PlayerDetectedState.cs" />
     <Compile Include="Assets\MyScripts\Architecture\DamageController.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\IdleState.cs" />
@@ -96,8 +96,8 @@
     <Compile Include="Assets\MyScripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\MyScripts\Architecture\ArchiteDamage.cs" />
     <Compile Include="Assets\NewScript\Player\NewPlayerController.cs" />
-    <Compile Include="Assets\MyScripts\Box\TreasureBoxTouch.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_MeleeAttackState.cs" />
+    <Compile Include="Assets\MyScripts\Box\TreasureBoxTouch.cs" />
     <Compile Include="Assets\NewScript\Structs\AttackDetails.cs" />
     <Compile Include="Assets\MyScripts\Enemy\EnemyTranslate.cs" />
     <Compile Include="Assets\MyScripts\Prop\PropType.cs" />
