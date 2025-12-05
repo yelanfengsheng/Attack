@@ -16,6 +16,8 @@ public class PlayerCombatController : MonoBehaviour
     private LayerMask whatIsDamageable;
     [SerializeField]
     private float attack1Damage;
+    [SerializeField]
+    private float stunDamageAmount=1;// 眩晕伤害值 与敌人眩晕抗性进行比较
     private bool gotInput;//是否获取了输入
     private bool isAttacking;
     private bool isFirstAttack;
@@ -76,6 +78,7 @@ public class PlayerCombatController : MonoBehaviour
 
         attackDetails.damageAmount= attack1Damage;//设置伤害值
         attackDetails.position = transform.position;//设置攻击来源位置x坐标
+        attackDetails.stunDamageAmount = stunDamageAmount;//设置眩晕伤害值
         //Debug.Log("攻击命中的第一个名字"+detectedColliders[0].transform.parent.name);
 
         foreach (Collider2D collider in detectedColliders)

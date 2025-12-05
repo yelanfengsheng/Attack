@@ -47,10 +47,10 @@ public class CombatDummyController : MonoBehaviour
     {
         CheckKnockback();// 检查击退
     }
-    private void Damage(float[] details)// 假人接受伤害
+    private void Damage(AttackDetails attackDetails)// 假人接受伤害
     {
-        currentHealth -= details[0];
-        if (details[1]<aliveGo.transform.position.x)// 攻击来源在假人左边
+        currentHealth -= attackDetails.damageAmount;
+        if (attackDetails.position.x<aliveGo.transform.position.x)// 攻击来源在假人左边
         {
             playerFacingDirection = 1;
         }

@@ -56,7 +56,7 @@ public class IdleState : State
         base.PhysicsUpdate();//基于类的物理更新
 
     }
-    public void SetFlipAfterIdle(bool filp)
+    public void SetFlipAfterIdle(bool filp)//设置空闲时间后是否翻转
     {
       filpAfterIdle = filp;
     }

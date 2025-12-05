@@ -64,9 +64,12 @@
     <Compile Include="Assets\NewScript\Enemy\State Machine\State.cs" />
     <Compile Include="Assets\NewScript\Enemy\State Machine\FiniteStateMachine.cs" />
     <Compile Include="Assets\MyScripts\Camera\CamreaShark.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\Enemy2.cs" />
     <Compile Include="Assets\MyScripts\Enemy\Blood.cs" />
     <Compile Include="Assets\MyScripts\SignSpeak\Sign.cs" />
+    <Compile Include="Assets\NewScript\Enemy\States\DeadState.cs" />
     <Compile Include="Assets\NewScript\HitPartical\HitParticalController.cs" />
+    <Compile Include="Assets\NewScript\Enemy\States\StunState.cs" />
     <Compile Include="Assets\NewScript\Enemy\BasicEnemyController.cs" />
     <Compile Include="Assets\MyScripts\Player\MyPlayerController.cs" />
     <Compile Include="Assets\MyScripts\Architecture\MovingPlatform.cs" />
@@ -81,9 +84,11 @@
     <Compile Include="Assets\MyScripts\UI\CoinUI.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_LookForPlayerState.cs" />
     <Compile Include="Assets\MyScripts\Player\FlashWhiteEffect.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_DeadState.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_PlayerDetectedState.cs" />
     <Compile Include="Assets\MyScripts\Architecture\DamageController.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\IdleState.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_IdleState.cs" />
     <Compile Include="Assets\MyScripts\Player\PlayerAttack.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_ChargeState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\PlayerDetectedState.cs" />
@@ -100,10 +105,13 @@
     <Compile Include="Assets\MyScripts\Box\TreasureBoxTouch.cs" />
     <Compile Include="Assets\NewScript\Structs\AttackDetails.cs" />
     <Compile Include="Assets\MyScripts\Enemy\EnemyTranslate.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_PlayerDetectedState.cs" />
     <Compile Include="Assets\MyScripts\Prop\PropType.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\Enemy1.cs" />
     <Compile Include="Assets\MyScripts\Enemy\EnemyBat.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_ChargeState.cs" />
+    <Compile Include="Assets\NewScript\Enemy\States\Date\D_StunState.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_LookForPlayerState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_LookForPlayer.cs" />
     <Compile Include="Assets\NewScript\CombatDummy\CombatDummyController.cs" />
     <Compile Include="Assets\MyScripts\Enemy\IDamageable.cs" />
@@ -116,15 +124,20 @@
     <Compile Include="Assets\MyScripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_IdleState.cs" />
     <Compile Include="Assets\NewScript\Player\PlayerAfterImagePool.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_StunState.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_MeleeAttackState.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_IdleState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\MoveState.cs" />
     <Compile Include="Assets\MyScripts\Prop\Coin.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_StunState.cs" />
     <Compile Include="Assets\NewScript\Player\PlayerStats.cs" />
+    <Compile Include="Assets\NewScript\Enemy\States\Date\D_DeadState.cs" />
     <Compile Include="Assets\MyScripts\Weapon\ControlSickle.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_MoveState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_Entity.cs" />
     <Compile Include="Assets\MyScripts\Box\TreasureType.cs" />
     <Compile Include="Assets\NewScript\Enemy\State Machine\Entity.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_MoveState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\MyScripts\SignSpeak\聊天内容.txt" />

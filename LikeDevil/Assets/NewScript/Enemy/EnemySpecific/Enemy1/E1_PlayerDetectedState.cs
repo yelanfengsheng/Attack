@@ -39,6 +39,11 @@ public class E1_PlayerDetectedState : PlayerDetectedState
         {
             stateMachine.ChangeState(enemy.lookForPlayerState);//切换到寻找玩家状态
         }
+        else if (!isDetectingLedge)//检测到边缘
+        {
+            entity.Flip();
+            stateMachine.ChangeState(enemy.moveState);//切换到移动状态
+        }
     }
 
     public override void PhysicsUpdate()

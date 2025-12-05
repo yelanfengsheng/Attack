@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public GameObject aliveGo { get; private set; }
     public AnimToStateMachine atsm { get; private set; }
+    public int lastDamageDirection { get; private set; }//最后一次受伤方向
 
     private Vector2 velocityWorkspace;//速度工作区 作用是为了减少GC回收
                                       //velocityWorkspace（“速度工作区”）是一个可复用的 Vector2 字段，用来临时存放计算出的速度并一次性赋值给 rb.velocity。
@@ -22,13 +23,22 @@ public class Entity : MonoBehaviour
     private Transform ledgeCheck;
     [SerializeField]
     private Transform playerCheck;
+    [SerializeField]
+    private Transform groundCheck;
 
     private float currentHealth;//当前生命值
-    private int lastDamageDirection;//最后一次受伤方向
+    private float currentStunResistance;//当前眩晕抗性    
+    private float lastDamageTime;//最后受伤时间
+
+    protected bool isStunned;//是否眩晕
+    protected bool isDead;//是否死亡
+
 
     public virtual void Start()
     { 
         facingDirection = 1;//初始方向向右
+        currentStunResistance = entityData.stunResistance;//初始化眩晕抗性
+
         aliveGo = transform.Find("Alive").gameObject;
         rb = aliveGo.GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
@@ -39,6 +49,12 @@ public class Entity : MonoBehaviour
     public virtual void Update()
     {
         stateMachinel.currentState.LogicUpdate();//状态机逻辑更新
+
+        if (Time.time >= lastDamageTime + entityData.stunRecoveryTime)//如果距离最后受伤时间超过眩晕恢复时间  所有敌人自动执行重置眩晕抗性操作
+        {
+            ResetStunResistance();//重置眩晕抗性
+        }
+
     }
     public virtual void FixedUpdate()
     {
@@ -47,6 +63,12 @@ public class Entity : MonoBehaviour
     public virtual void SetVelocity(float velocity)//设置移动速度
     {
         velocityWorkspace.Set(facingDirection * velocity, rb.velocity.y);//设置速度工作区
+        rb.velocity = velocityWorkspace;//应用速度工作区
+    }
+    public virtual void SetVelocity(float velocity,Vector2 angle,int direction)//新的设置移动速度方法  主要用于击退效果
+    {
+        angle.Normalize();//归一化方向向量
+        velocityWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);//设置速度工作区
         rb.velocity = velocityWorkspace;//应用速度工作区
     }
     public virtual bool CheckWall()//检测墙壁
@@ -71,16 +93,33 @@ public class Entity : MonoBehaviour
     {
        return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
     }
+    public virtual bool CheckGround()//检测地面
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.whatIsGround);
+    }
+
     public virtual void DamageHop(float velocity)//受伤跳跃
     {
         velocityWorkspace.Set(rb.velocity.x, velocity);//设置速度工作区
         rb.velocity = velocityWorkspace;//应用速度工作区
     }
-
+    public virtual void ResetStunResistance()//重置眩晕抗性
+    {
+        isStunned = false;
+        currentStunResistance = entityData.stunResistance;
+      
+    }
     public virtual void Damage(AttackDetails attackDetails)
     {
+
+        lastDamageTime = Time.time;//记录最后受伤时间
         currentHealth -= attackDetails.damageAmount;//减少生命值
+        currentStunResistance -= attackDetails.stunDamageAmount;//减少眩晕抗性
+
         DamageHop(entityData.damageHopSpeed);//受伤跳跃
+
+        Instantiate(entityData.hitPartical, aliveGo.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+      
 
         if (attackDetails.position.x > aliveGo.transform.position.x)
         {
@@ -89,6 +128,14 @@ public class Entity : MonoBehaviour
         else
         {
             lastDamageDirection = 1;
+        }
+        if (currentStunResistance <= 0)//如果眩晕抗性小于等于0
+        {
+            isStunned = true;//进入眩晕状态
+        }
+        if(currentHealth <= 0)
+        {
+            isDead = true;//进入死亡状态
         }
     }
     public virtual void Flip()//翻转实体方向
@@ -101,6 +148,7 @@ public class Entity : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(wallCheck.position, wallCheck.position+(Vector3)(Vector2.right*facingDirection*entityData.wallCheckDistance));//墙壁检测射线
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position+(Vector3)(Vector2.down)*entityData.ledgeCheckDistance);//边缘检测射线
+
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);//近战范围检测射线
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);//最小仇恨范围检测射线

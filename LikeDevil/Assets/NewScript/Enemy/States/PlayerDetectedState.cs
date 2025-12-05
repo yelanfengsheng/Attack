@@ -10,7 +10,7 @@ public class PlayerDetectedState : State
     protected bool isPlayerInMaxAgroRange;//玩家是否在最大攻击范围内
     protected bool performLongRangeAction;//执行远程动作
     protected bool performCloseRangeAction;//执行近战动作
-
+    protected bool isDetectingLedge;//检测到边缘
 
     public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animBoolName,D_PlayerDetected stateData) : base(entity, stateMachine, animBoolName)//初始化基类
     {
@@ -23,6 +23,7 @@ public class PlayerDetectedState : State
         isPlayerInMinAgroRange = entity.CheckPlayerInMinAggroRange();//检测玩家是否在最小攻击范围内
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAggroRange();//检测玩家是否在最大攻击范围内
         performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();//检测玩家是否在近战范围内
+        isDetectingLedge = entity.CheckLedge();//检测边缘s
     }
 
     public override void Enter()

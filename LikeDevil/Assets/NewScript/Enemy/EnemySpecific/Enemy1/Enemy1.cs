@@ -10,6 +10,8 @@ public class Enemy1 : Entity
     public E1_ChargeState chargeState { get; private set; }//冲锋状态
     public E1_LookForPlayerState lookForPlayerState { get; private set; }//寻找玩家状态 
     public E1_MeleeAttackState meleeAttackState { get; private set; }//近战攻击状态
+    public E1_StunState stunState { get; private set; }//眩晕状态
+    public E1_DeadState deadState { get; private set; }//死亡状态
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -25,6 +27,10 @@ public class Enemy1 : Entity
     private D_MeleeAttack meleeAttackStateData;//近战攻击状态数据
     [SerializeField]
     private Transform meleeAttackPosition;//近战攻击位置
+    [SerializeField]
+    private D_StunState stunStateData;//眩晕状态数据
+    [SerializeField]
+    private D_DeadState deadStateData;//死亡状态数据
 
     public override void Start()
     {
@@ -35,15 +41,27 @@ public class Enemy1 : Entity
         chargeState = new E1_ChargeState(this, stateMachinel, "charge", chargeStateData, this);//创建冲锋状态实例
         lookForPlayerState = new E1_LookForPlayerState(this, stateMachinel, "lookForPlayer", lookForPlayerStateData, this);//创建寻找玩家状态实例
         meleeAttackState= new E1_MeleeAttackState(this, stateMachinel, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);//创建近战攻击状态实例
+        stunState = new E1_StunState(this, stateMachinel, "stun", stunStateData, this);//创建眩晕状态实例
+        deadState = new E1_DeadState(this, stateMachinel, "dead", deadStateData, this);//创建死亡状态实例
 
 
         stateMachinel.Initialize(moveState);
         
 
     }
-    public override void Damage(AttackDetails attackDetails)
+    public override void Damage(AttackDetails attackDetails)//这里重写受伤方法 是为了让敌人在受伤时能够切换到眩晕状态
     {
         base.Damage(attackDetails);
+
+        if (isDead)
+        {
+            stateMachinel.ChangeState(deadState);
+        }
+        else if (isStunned && stateMachinel.currentState != stunState)//如果眩晕了并且当前状态不是眩晕状态
+        {
+            stateMachinel.ChangeState(stunState);//切换到眩晕状态
+        }
+        
     }
     public override void OnDrawGizmos()
     {
