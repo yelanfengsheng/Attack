@@ -110,8 +110,8 @@
     <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\NativeHashMapExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\CollectionHelper.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\NativeArrayExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\Unicode.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\NativeHashMap.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\Unicode.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\UnsafeRingQueue.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\UnsafeText.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections\xxHash3.AVX2.cs" />

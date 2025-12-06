@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E2_MeleeAttackState : MeleeAttackState
+public class E2_RangedAttackState : RangedAttackState
 {
     private Enemy2 enemy;
-    public E2_MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition, D_MeleeAttack stateData,Enemy2 enemy) : base(entity, stateMachine, animBoolName, attackPosition, stateData)
+    public E2_RangedAttackState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, Enemy2 enemy) : base(entity, stateMachine, animBoolName, attackPosition, stateData)
     {
-       this.enemy = enemy;
+        this.enemy = enemy;
     }
 
     public override void DoChecks()
@@ -33,20 +33,16 @@ public class E2_MeleeAttackState : MeleeAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        //攻击动画结束后 根据玩家是否在最小攻击范围切换状态
-        if (isAnimationFinished)
+        if(isAnimationFinished)//动画播放完成后切换状态
         {
-            if(isPlayerInMinAgroRange)//如果玩家在最小仇恨范围内
+            if (enemy.CheckPlayerInMinAggroRange())//如果玩家在最小激活范围内 切换到玩家检测状态
             {
-                stateMachine.ChangeState(enemy.playerDetectedState);//切换到玩家检测状态
-                Debug.Log("切换到玩家检测状态");
+                stateMachine.ChangeState(enemy.playerDetectedState);
             }
-            else if(!isPlayerInMinAgroRange)//如果玩家不在最小仇恨范围内
+            else//否则切换到寻找玩家状态
             {
                 stateMachine.ChangeState(enemy.lookForPlayerState);
-                Debug.Log("切换到寻找玩家状态");
             }
-           
         }
     }
 

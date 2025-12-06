@@ -75,9 +75,9 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineSmoothPath.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\CinemachineBlenderSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Core\CinemachineVirtualCameraBase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachinePath.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Components\CinemachineBasicMultiChannelPerlin.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Timeline\CinemachineShotPlayable.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachinePath.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Impulse\CinemachineImpulseSource.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\PostProcessing\CinemachineVolumeSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Runtime\Behaviours\CinemachineExternalCamera.cs" />

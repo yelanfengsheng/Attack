@@ -61,7 +61,12 @@ public class Enemy1 : Entity
         {
             stateMachinel.ChangeState(stunState);//切换到眩晕状态
         }
-        
+        else if (!CheckPlayerInMinAggroRange())//如果受到伤害后玩家不在最小攻击范围内 也就是在敌人的后面
+        {
+            lookForPlayerState.SetTurnImmediately(true);//设置立即转向
+            stateMachinel.ChangeState(lookForPlayerState);//切换到寻找玩家状态
+        }
+
     }
     public override void OnDrawGizmos()
     {

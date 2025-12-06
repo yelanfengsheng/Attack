@@ -26,6 +26,10 @@ public class Entity : MonoBehaviour
     [SerializeField]
     private Transform groundCheck;
 
+
+
+   
+
     private float currentHealth;//当前生命值
     private float currentStunResistance;//当前眩晕抗性    
     private float lastDamageTime;//最后受伤时间
@@ -49,7 +53,7 @@ public class Entity : MonoBehaviour
     public virtual void Update()
     {
         stateMachinel.currentState.LogicUpdate();//状态机逻辑更新
-
+        anim.SetFloat("yVelocity", rb.velocity.y);//设置y轴速度参数  用于跳跃动画播放
         if (Time.time >= lastDamageTime + entityData.stunRecoveryTime)//如果距离最后受伤时间超过眩晕恢复时间  所有敌人自动执行重置眩晕抗性操作
         {
             ResetStunResistance();//重置眩晕抗性
@@ -97,6 +101,11 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.whatIsGround);
     }
+
+
+   
+
+
 
     public virtual void DamageHop(float velocity)//受伤跳跃
     {

@@ -6,7 +6,7 @@ public class State
 {
     protected FiniteStateMachine stateMachine;// 开始状态机
     protected Entity entity;// 开始实体
-    protected float startTime;// 状态开始的时刻
+    public float startTime { get; protected set; }// 状态开始的时刻
     protected string animBoolName;// 动画布尔名称
 
     public State(Entity entity, FiniteStateMachine stateMachine, string animBoolName) // 构造函数 用于初始化状态机 后续再其他的子类中都可重写此构造函数
