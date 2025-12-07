@@ -83,6 +83,7 @@
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_MoveState.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_DeadState.cs" />
     <Compile Include="Assets\NewScript\Manager\GameManager.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy3\Enemy3.cs" />
     <Compile Include="Assets\MyScripts\UI\CoinUI.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_LookForPlayerState.cs" />
     <Compile Include="Assets\MyScripts\Player\FlashWhiteEffect.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="Assets\NewScript\Enemy\States\DodgeState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\ChargeState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_MeleeAttack.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy3\E3_IdleState.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy3\E3_RangedAttackState.cs" />
     <Compile Include="Assets\MyScripts\Enemy\WormControl.cs" />
     <Compile Include="Assets\NewScript\Player\PlayerAfterImageSprite.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\LookForPlayerState.cs" />
@@ -113,6 +116,7 @@
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\Enemy1.cs" />
     <Compile Include="Assets\MyScripts\Enemy\EnemyBat.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_RangedAttackState.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy3\E3_PlayerDetectedState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_ChargeState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\RangedAttackState.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_StunState.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_DodgeState.cs" />
     <Compile Include="Assets\MyScripts\Enemy\MoveAreaVisualizer.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_RangedAttackState.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy3\E3_MoveState.cs" />
     <Compile Include="Assets\MyScripts\Prop\CouldBeEat.cs" />
     <Compile Include="Assets\MyScripts\UI\HealthBarUI.cs" />
     <Compile Include="Assets\MyScripts\Prop\HpLiquid.cs" />
@@ -131,6 +136,7 @@
     <Compile Include="Assets\MyScripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\NewScript\Enemy\States\Date\D_IdleState.cs" />
     <Compile Include="Assets\NewScript\Player\PlayerAfterImagePool.cs" />
+    <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy3\E3_LookForPlayerState.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_StunState.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy2\E2_MeleeAttackState.cs" />
     <Compile Include="Assets\NewScript\Enemy\EnemySpecific\Enemy1\E1_IdleState.cs" />

@@ -85,11 +85,11 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
 
     }
-    public virtual bool CheckPlayerInMinAggroRange()//检测玩家是否在最小攻击范围内
+    public virtual bool CheckPlayerInMinAggroRange()//检测玩家是否在最小仇恨范围内
     {
         return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
     }
-    public virtual bool CheckPlayerInMaxAggroRange()//检测玩家是否在最大攻击范围内
+    public virtual bool CheckPlayerInMaxAggroRange()//检测玩家是否在最大仇恨范围内
     {
         return Physics2D.Raycast(playerCheck.position, aliveGo.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     } 

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E2_IdleState : IdleState
+public class E3_LookForPlayerState : LookForPlayerState
 {
-    private Enemy2 enemy;
-    public E2_IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData, Enemy2 enemy) : base(entity, stateMachine, animBoolName, stateData)
+    private Enemy3 enemy;
+    public E3_LookForPlayerState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_LookForPlayer stateData, Enemy3 enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -28,15 +28,13 @@ public class E2_IdleState : IdleState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        //如果玩家进入最小仇恨范围 切换到玩家检测状态
-        if (isPlayerInMinAgroRange)
+        if (isPlayerInMinAgroRange)//如果玩家在最小仇恨范围内
         {
             stateMachine.ChangeState(enemy.playerDetectedState);//切换到玩家检测状态
         }
-
-        //如果空闲时间结束 切换到移动状态
-       else if (isIdleTimeOver)//如果空闲时间结束
+        else if (isAllTurnsDone)//如果所有转向都完成了
         {
+
             stateMachine.ChangeState(enemy.moveState);//切换到移动状态
         }
     }

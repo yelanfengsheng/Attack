@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum E_ProjectileType
+{
+    Arrow,
+    Fireball,
+    
+}
 public class Projectile : MonoBehaviour
 {
     private AttackDetails attackDetails;
@@ -14,6 +20,8 @@ public class Projectile : MonoBehaviour
     private float gravity;//重力影响力度
     [SerializeField]
     private float damageRadius;//伤害范围
+    [SerializeField]
+    private E_ProjectileType e_ProjectileType;
 
     private bool isGravityOn;
     private bool hasHitGround;
@@ -51,17 +59,42 @@ public class Projectile : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!hasHitGround)//如果子弹没有击中地面
+
+        switch (e_ProjectileType)
+        {
+            case E_ProjectileType.Arrow:
+                ArrowProjectileLogic();
+                break;
+            case E_ProjectileType.Fireball:
+                FireballProjectileLogic();
+                break;
+            default:
+                break;
+        }
+
+        
+       
+    }
+    public void FireProjectile(float speed,float travelDistance,float damage)
+    {
+        this.speed = speed;
+        this.travelDistance = travelDistance;
+        attackDetails.damageAmount = damage;
+    }
+
+    private void ArrowProjectileLogic()
+    {
+        if (!hasHitGround)//如果子弹没有击中地面
         {
             Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);//检测子弹是否击中玩家
             Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);//检测子弹是否击中地面
             //子弹射击到玩家
-            if(damageHit)
+            if (damageHit)
             {
                 damageHit.transform.SendMessage("Damage", attackDetails);
                 Destroy(gameObject);
             }
-            if(groundHit)
+            if (groundHit)
             {
                 hasHitGround = true;
                 rb.gravityScale = 0f;
@@ -75,14 +108,32 @@ public class Projectile : MonoBehaviour
                 rb.gravityScale = gravity;//应用重力影响
             }
 
-        }
-       
+        }   
     }
-    public void FireProjectile(float speed,float travelDistance,float damage)
+    private void FireballProjectileLogic()
     {
-        this.speed = speed;
-        this.travelDistance = travelDistance;
-        attackDetails.damageAmount = damage;
+        if (!hasHitGround)//如果子弹没有击中地面
+        {
+            Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);//检测子弹是否击中玩家
+            Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);//检测子弹是否击中地面
+            //子弹射击到玩家
+            if (damageHit)
+            {
+                damageHit.transform.SendMessage("Damage", attackDetails);
+                Destroy(gameObject);
+            }
+            if (groundHit)
+            {
+                hasHitGround = true;
+                rb.gravityScale = 0f;
+                rb.velocity = Vector2.zero;
+                Destroy(gameObject,0.1f);//0.5秒后销毁火球
+            }
+            if (Mathf.Abs(xStartPos - transform.position.x) > travelDistance && !isGravityOn)//如果子弹飞行距离超过设定值且重力影响未开启
+            {
+                Destroy(gameObject, 0.1f);//0.5秒后销毁火球
+            }
+        }
     }
 
 
