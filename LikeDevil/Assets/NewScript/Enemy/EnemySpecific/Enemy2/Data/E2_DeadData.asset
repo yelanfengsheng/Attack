@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 3}
   deadBloodParticle: {fileID: 9139786027775095102, guid: 93a11ca50ee269b4d9d30ca3437d5f46,
     type: 3}
+  targetObj: {fileID: 5973056269003035830, guid: 15a4bae9b0464fb4fbaac982febba934,
+    type: 3}

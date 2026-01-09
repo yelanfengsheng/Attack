@@ -98,8 +98,8 @@
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Timeline\CinemachineShotClipEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineNoiseSettingsEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineVirtualCameraBaseEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineColliderEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Impulse\CinemachineImpulseDefinitionPropertyDrawer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineColliderEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\CinemachineOrbitalTransposerEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Utility\SaveDuringPlay.cs" />
     <Compile Include="Library\PackageCache\com.unity.cinemachine@2.10.5\Editor\Editors\Cinemachine3rdPersonFollowEditor.cs" />

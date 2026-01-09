@@ -28,7 +28,7 @@ public class E2_IdleState : IdleState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        //如果玩家进入最小仇恨范围 切换到玩家检测状态
+        //如果玩家进入最小仇恨    范围 切换到玩家检测状态
         if (isPlayerInMinAgroRange)
         {
             stateMachine.ChangeState(enemy.playerDetectedState);//切换到玩家检测状态

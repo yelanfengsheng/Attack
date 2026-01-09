@@ -7,5 +7,6 @@ public class D_DeadState : ScriptableObject
 {
     public GameObject deadChunkParticle;
     public GameObject deadBloodParticle;
+    public GameObject targetObj;
 
 }

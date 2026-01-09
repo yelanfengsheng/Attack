@@ -18,11 +18,11 @@ public class Entity : MonoBehaviour
                                       //主要目的不是功能上的必须，而是为了减少临时对象/副本的创建、提高可读性和微小的性能优化。
 
     [SerializeField]
-    private Transform wallCheck;
+    protected Transform wallCheck;
     [SerializeField]
     private Transform ledgeCheck;
     [SerializeField]
-    private Transform playerCheck;
+    protected Transform playerCheck;
     [SerializeField]
     private Transform groundCheck;
 

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum E_ProjectileType
 {
-    Arrow,
-    Fireball,
-    
+    Arrow,//¼ýÊ¸
+    Fireball,//»ðÇò
+
 }
 public class Projectile : MonoBehaviour
 {
